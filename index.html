@@ -1,229 +1,1023 @@
-<!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Massively by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI/UX & SAP Professional Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+        :root {
+            --primary: #00a4ef;
+            --primary-dark: #0078b4;
+            --accent: #ff6b35;
+            --accent-light: #ffa500;
+            --bg-dark: #0f1419;
+            --bg-light: #1a1f2e;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b8c1;
+            --success: #17c653;
+            --warning: #ffd700;
+            --error: #ff4444;
+            --grid-color: rgba(0, 164, 239, 0.1);
+        }
 
-				<!-- Intro -->
-					<div id="intro">
-						<h1> Nupur arvind Patil <br />
-						 Portfolio Project</h1>
-						<p>Data Anaalyst skilled in SQl,PowerBi,Python <a href="https://twitter.com/ajlkn">@ajlkn</a> for <a href="https://html5up.net">HTML5 UP</a><br />
-						and released for free under the <a href="https://html5up.net/license">Creative Commons license</a>.</p>
-						<ul class="actions">
-							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-						</ul>
-					</div>
+        body {
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">Massively</a>
-					</header>
+        /* ============ ANIMATED BACKGROUND ============ */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 164, 239, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
+                var(--bg-dark);
+            pointer-events: none;
+            z-index: -1;
+        }
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="index.html">This is Massively</a></li>
-							<li><a href="generic.html">Generic Page</a></li>
-							<li><a href="elements.html">Elements Reference</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav>
+        /* ============ HEADER & NAVIGATION ============ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(15, 20, 25, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 164, 239, 0.2);
+            padding: 1rem 2rem;
+        }
 
-				<!-- Main -->
-					<div id="main">
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-						<!-- Featured Post -->
-							<article class="post featured">
-								<header class="major">
-									<span class="date">April 25, 2017</span>
-									<h2><a href="#">And this is a<br />
-									massive headline</a></h2>
-									<p>Aenean ornare velit lacus varius enim ullamcorper proin aliquam<br />
-									facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor<br />
-									amet nullam sed etiam veroeros.</p>
-								</header>
-								<a href="#" class="image main"><img src="images/pic01.jpg" alt="" /></a>
-								<ul class="actions special">
-									<li><a href="#" class="button large">Full Story</a></li>
-								</ul>
-							</article>
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
 
-						<!-- Posts -->
-							<section class="posts">
-								<article>
-									<header>
-										<span class="date">April 24, 2017</span>
-										<h2><a href="#">Sed magna<br />
-										ipsum faucibus</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">April 22, 2017</span>
-										<h2><a href="#">Primis eget<br />
-										imperdiet lorem</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">April 18, 2017</span>
-										<h2><a href="#">Ante mattis<br />
-										interdum dolor</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">April 14, 2017</span>
-										<h2><a href="#">Tempus sed<br />
-										nulla imperdiet</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">April 11, 2017</span>
-										<h2><a href="#">Odio magna<br />
-										sed consectetur</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">April 7, 2017</span>
-										<h2><a href="#">Augue lorem<br />
-										primis vestibulum</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
-							</section>
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
 
-						<!-- Footer -->
-							<footer>
-								<div class="pagination">
-									<!--<a href="#" class="previous">Prev</a>-->
-									<a href="#" class="page active">1</a>
-									<a href="#" class="page">2</a>
-									<a href="#" class="page">3</a>
-									<span class="extra">&hellip;</span>
-									<a href="#" class="page">8</a>
-									<a href="#" class="page">9</a>
-									<a href="#" class="page">10</a>
-									<a href="#" class="next">Next</a>
-								</div>
-							</footer>
+        nav a:hover {
+            color: var(--primary);
+        }
 
-					</div>
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
 
-				<!-- Footer -->
-					<footer id="footer">
-						<section>
-							<form method="post" action="#">
-								<div class="fields">
-									<div class="field">
-										<label for="name">Name</label>
-										<input type="text" name="name" id="name" />
-									</div>
-									<div class="field">
-										<label for="email">Email</label>
-										<input type="text" name="email" id="email" />
-									</div>
-									<div class="field">
-										<label for="message">Message</label>
-										<textarea name="message" id="message" rows="3"></textarea>
-									</div>
-								</div>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li>
-								</ul>
-							</form>
-						</section>
-						<section class="split contact">
-							<section class="alt">
-								<h3>Address</h3>
-								<p>1234 Somewhere Road #87257<br />
-								Nashville, TN 00000-0000</p>
-							</section>
-							<section>
-								<h3>Phone</h3>
-								<p><a href="#">(000) 000-0000</a></p>
-							</section>
-							<section>
-								<h3>Email</h3>
-								<p><a href="#">info@untitled.tld</a></p>
-							</section>
-							<section>
-								<h3>Social</h3>
-								<ul class="icons alt">
-									<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</section>
-						</section>
-					</footer>
+        nav a:hover::after {
+            width: 100%;
+        }
 
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-					</div>
+        /* ============ HERO SECTION ============ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
 
-			</div>
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            z-index: 10;
+            animation: fadeInUp 1s ease-out;
+        }
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+        }
 
-	</body>
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 164, 239, 0.3);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 164, 239, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* ============ LIFECYCLE JOURNEY ============ */
+        .lifecycle-section {
+            max-width: 1400px;
+            margin: 5rem auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        .lifecycle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .lifecycle-card {
+            background: linear-gradient(135deg, rgba(0, 164, 239, 0.1), rgba(255, 107, 53, 0.05));
+            border: 1px solid rgba(0, 164, 239, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .lifecycle-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(0, 164, 239, 0.15);
+        }
+
+        .lifecycle-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: left;
+        }
+
+        .lifecycle-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(0, 164, 239, 0.2);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .card-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 164, 239, 0.15);
+            border-radius: 50%;
+        }
+
+        /* ============ FLOW DIAGRAM ============ */
+        .flow-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 4rem 0;
+            perspective: 1000px;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .flow-box {
+            background: linear-gradient(135deg, rgba(0, 164, 239, 0.2), rgba(255, 107, 53, 0.1));
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            white-space: nowrap;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* ============ SKILLS SHOWCASE ============ */
+        .skills-section {
+            max-width: 1400px;
+            margin: 5rem auto;
+            padding: 2rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: rgba(0, 164, 239, 0.1);
+            border: 1px solid rgba(0, 164, 239, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: rgba(0, 164, 239, 0.15);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-name {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-level {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* ============ PROJECTS SECTION ============ */
+        .projects-section {
+            max-width: 1400px;
+            margin: 5rem auto;
+            padding: 2rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(0, 164, 239, 0.08), rgba(255, 107, 53, 0.05));
+            border: 1px solid rgba(0, 164, 239, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.15);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            padding: 2rem;
+            color: white;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-category {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .project-body {
+            padding: 1.5rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(255, 107, 53, 0.2);
+            color: var(--accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* ============ AI INTEGRATION SECTION ============ */
+        .ai-section {
+            max-width: 1400px;
+            margin: 5rem auto;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 164, 239, 0.1), rgba(255, 107, 53, 0.08));
+            border-radius: 16px;
+            border: 1px solid rgba(0, 164, 239, 0.2);
+        }
+
+        .ai-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .ai-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .ai-features {
+            list-style: none;
+        }
+
+        .ai-features li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .ai-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .ai-visual {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .ai-box {
+            background: rgba(0, 164, 239, 0.15);
+            border: 2px dashed var(--primary);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .ai-box strong {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .ai-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            nav a {
+                margin: 0 0.75rem;
+                font-size: 0.8rem;
+            }
+
+            .lifecycle-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flow-container {
+                flex-direction: column;
+            }
+
+            .flow-step {
+                width: 100%;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+
+        /* ============ CONTACT SECTION ============ */
+        .contact-section {
+            max-width: 1400px;
+            margin: 5rem auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(0, 164, 239, 0.15);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .contact-link:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+            transform: translateY(-2px);
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            max-width: 1400px;
+            margin: 5rem auto 2rem;
+            padding: 2rem;
+            border-top: 1px solid rgba(0, 164, 239, 0.2);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* ============ ANIMATIONS ============ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(0, 164, 239, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(0, 164, 239, 0);
+            }
+        }
+
+        .lifecycle-card {
+            animation-delay: var(--delay, 0s);
+        }
+
+        .lifecycle-card:nth-child(1) { --delay: 0.1s; }
+        .lifecycle-card:nth-child(2) { --delay: 0.2s; }
+        .lifecycle-card:nth-child(3) { --delay: 0.3s; }
+        .lifecycle-card:nth-child(4) { --delay: 0.4s; }
+        .lifecycle-card:nth-child(5) { --delay: 0.5s; }
+        .lifecycle-card:nth-child(6) { --delay: 0.6s; }
+        .lifecycle-card:nth-child(7) { --delay: 0.7s; }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <div class="logo">SAP & UI/UX Professional</div>
+            <nav>
+                <a href="#lifecycle">Lifecycle</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#ai">AI Integration</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Crafting Enterprise Solutions with <span class="gradient">SAP & Modern UX</span></h1>
+            <p class="hero-subtitle">Full-stack SAP expertise | UI/UX designer | Cloud architect | Building tomorrow's applications today</p>
+            <div class="cta-buttons">
+                <a href="#lifecycle" class="btn btn-primary">Explore My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- APPLICATION LIFECYCLE SECTION -->
+    <section class="lifecycle-section" id="lifecycle">
+        <h2 class="section-title">Application Lifecycle Expertise</h2>
+        <p class="section-subtitle">A complete journey from concept to deployment, showcasing comprehensive SAP & UI/UX capabilities</p>
+
+        <div class="lifecycle-grid">
+            <!-- Phase 1 -->
+            <div class="lifecycle-card">
+                <div class="card-number">01</div>
+                <h3 class="card-title">Client Discovery & Analysis</h3>
+                <p class="card-description">Deep-dive workshops to understand business requirements, pain points, and technical constraints</p>
+                <div class="card-skills">
+                    <span class="skill-tag">Business Analysis</span>
+                    <span class="skill-tag">Requirements Gathering</span>
+                    <span class="skill-tag">Workshop Facilitation</span>
+                </div>
+            </div>
+
+            <!-- Phase 2 -->
+            <div class="lifecycle-card">
+                <div class="card-number">02</div>
+                <h3 class="card-title">API Design & OData Services</h3>
+                <p class="card-description">Creating robust CAP and RAP-based v2/v4 services with proper data exposure and security protocols</p>
+                <div class="card-skills">
+                    <span class="skill-tag">SAP CAP</span>
+                    <span class="skill-tag">OData RAP v4</span>
+                    <span class="skill-tag">Authorization</span>
+                </div>
+            </div>
+
+            <!-- Phase 3 -->
+            <div class="lifecycle-card">
+                <div class="card-number">03</div>
+                <h3 class="card-title">Frontend Development</h3>
+                <p class="card-description">Building responsive Fiori Elements and freestyle applications with intuitive user interfaces</p>
+                <div class="card-skills">
+                    <span class="skill-tag">SAP Fiori</span>
+                    <span class="skill-tag">UI5</span>
+                    <span class="skill-tag">UX Design</span>
+                </div>
+            </div>
+
+            <!-- Phase 4 -->
+            <div class="lifecycle-card">
+                <div class="card-number">04</div>
+                <h3 class="card-title">Cloud & On-Prem Deployment</h3>
+                <p class="card-description">Expert deployment across SAP BTP, Cloud Foundry, and on-premises environments with CI/CD pipelines</p>
+                <div class="card-skills">
+                    <span class="skill-tag">SAP BTP</span>
+                    <span class="skill-tag">Cloud Foundry</span>
+                    <span class="skill-tag">DevOps</span>
+                </div>
+            </div>
+
+            <!-- Phase 5 -->
+            <div class="lifecycle-card">
+                <div class="card-number">05</div>
+                <h3 class="card-title">Workzone & Portal Design</h3>
+                <p class="card-description">Creating centralized entry points with SAP Build Workzone for seamless user experiences</p>
+                <div class="card-skills">
+                    <span class="skill-tag">Workzone</span>
+                    <span class="skill-tag">Portal Design</span>
+                    <span class="skill-tag">Information Architecture</span>
+                </div>
+            </div>
+
+            <!-- Phase 6 -->
+            <div class="lifecycle-card">
+                <div class="card-number">06</div>
+                <h3 class="card-title">Role Management & Security</h3>
+                <p class="card-description">Implementing fine-grained role-based access control and authorization frameworks</p>
+                <div class="card-skills">
+                    <span class="skill-tag">RBAC</span>
+                    <span class="skill-tag">Security Design</span>
+                    <span class="skill-tag">Compliance</span>
+                </div>
+            </div>
+
+            <!-- Phase 7 -->
+            <div class="lifecycle-card">
+                <div class="card-number">07</div>
+                <h3 class="card-title">System & Subaccount Migration</h3>
+                <p class="card-description">Seamless migration across development, QA, production, and multiple subaccounts with zero downtime</p>
+                <div class="card-skills">
+                    <span class="skill-tag">System Transport</span>
+                    <span class="skill-tag">Data Migration</span>
+                    <span class="skill-tag">Infrastructure</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flow Diagram -->
+        <div class="flow-container">
+            <div class="flow-step">
+                <div class="flow-box">📋 Requirements</div>
+                <span class="flow-arrow">→</span>
+            </div>
+            <div class="flow-step">
+                <div class="flow-box">⚙️ Backend APIs</div>
+                <span class="flow-arrow">→</span>
+            </div>
+            <div class="flow-step">
+                <div class="flow-box">🎨 Frontend UI</div>
+                <span class="flow-arrow">→</span>
+            </div>
+            <div class="flow-step">
+                <div class="flow-box">🚀 Deploy</div>
+                <span class="flow-arrow">→</span>
+            </div>
+            <div class="flow-step">
+                <div class="flow-box">⭐ Scale</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section class="skills-section" id="skills">
+        <h2 class="section-title">Technical Skills & Expertise</h2>
+
+        <div class="skills-grid">
+            <div class="skill-item">
+                <div class="skill-icon">🏗️</div>
+                <div class="skill-name">SAP Architecture</div>
+                <div class="skill-level">Expert</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">📱</div>
+                <div class="skill-name">UI/UX Design</div>
+                <div class="skill-level">Expert</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">💻</div>
+                <div class="skill-name">Frontend Development</div>
+                <div class="skill-level">Expert</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">⚙️</div>
+                <div class="skill-name">Backend Services</div>
+                <div class="skill-level">Expert</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">☁️</div>
+                <div class="skill-name">Cloud & BTP</div>
+                <div class="skill-level">Expert</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">🔐</div>
+                <div class="skill-name">Security & Auth</div>
+                <div class="skill-level">Advanced</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">📊</div>
+                <div class="skill-name">Analytics & Reports</div>
+                <div class="skill-level">Advanced</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">🤖</div>
+                <div class="skill-name">AI Integration</div>
+                <div class="skill-level">Emerging</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section class="projects-section" id="projects">
+        <h2 class="section-title">Featured Custom Applications</h2>
+
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Intelligent Inventory System</div>
+                    <div class="project-category">Complex Application</div>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">A comprehensive inventory management system with real-time tracking, automated forecasting, and multi-warehouse support using SAP CAP and Fiori Elements.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">SAP CAP</span>
+                        <span class="tech-tag">Fiori</span>
+                        <span class="tech-tag">OData v4</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Supply Chain Dashboard</div>
+                    <div class="project-category">Analytics & Visualization</div>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">Interactive real-time dashboard providing supply chain visibility, KPI tracking, and predictive analytics with custom API integrations.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Analytics</span>
+                        <span class="tech-tag">UI5</span>
+                        <span class="tech-tag">BTP</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Employee Portal</div>
+                    <div class="project-category">Enterprise Application</div>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">Unified employee hub with Leave Management, Expense Tracking, and Performance Reviews integrated with SAP SuccessFactors and S/4HANA.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Workzone</span>
+                        <span class="tech-tag">SAP Fiori</span>
+                        <span class="tech-tag">Integration</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Vendor Management Portal</div>
+                    <div class="project-category">B2B Solution</div>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">Streamlined vendor collaboration platform with PO management, invoice processing, and performance tracking with role-based workflows.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">RAP v4</span>
+                        <span class="tech-tag">Workflows</span>
+                        <span class="tech-tag">UI5</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Financial Consolidation Tool</div>
+                    <div class="project-category">Finance & Controlling</div>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">Multi-company financial consolidation system with automated allocations, inter-company eliminations, and compliance reporting.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">S/4HANA</span>
+                        <span class="tech-tag">CAP</span>
+                        <span class="tech-tag">Analytics</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Quality Assurance Dashboard</div>
+                    <div class="project-category">Manufacturing</div>
+                </div>
+                <div class="project-body">
+                    <p class="project-description">Real-time QA monitoring with defect tracking, inspection workflows, and SPC (Statistical Process Control) visualization.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Manufacturing</span>
+                        <span class="tech-tag">Fiori</span>
+                        <span class="tech-tag">Reports</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI INTEGRATION SECTION -->
+    <section class="ai-section" id="ai">
+        <h2 class="section-title">AI Integration & Future-Ready Solutions</h2>
+        <div class="ai-content">
+            <div class="ai-text">
+                <h3>Emerging AI Capabilities</h3>
+                <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">Expanding my expertise in AI integration with SAP to deliver intelligent, data-driven solutions</p>
+                <ul class="ai-features">
+                    <li>AI-powered Process Automation with SAP Intelligent RPA</li>
+                    <li>Predictive Analytics & Machine Learning Models</li>
+                    <li>Natural Language Processing for Business Intelligence</li>
+                    <li>Generative AI for Report Generation & Insights</li>
+                    <li>Intelligent Document Processing & Classification</li>
+                    <li>AI-Driven User Experience Personalization</li>
+                </ul>
+            </div>
+            <div class="ai-visual">
+                <div class="ai-box">
+                    <strong>📊 Data Intelligence</strong>
+                    <p style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">Extracting insights from enterprise data</p>
+                </div>
+                <div class="ai-box">
+                    <strong>🤖 Process Automation</strong>
+                    <p style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">Intelligent workflow automation</p>
+                </div>
+                <div class="ai-box">
+                    <strong>🧠 Predictive Models</strong>
+                    <p style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">Forecasting & decision support</p>
+                </div>
+                <div class="ai-box">
+                    <strong>✨ Smart UX</strong>
+                    <p style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">Personalized user experiences</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section" id="contact">
+        <h2 class="section-title">Let's Build Something Amazing</h2>
+        <p class="section-subtitle" style="margin-bottom: 1rem;">Ready to discuss your next project or explore collaboration opportunities?</p>
+        <div class="contact-buttons">
+            <a href="mailto:your.email@example.com" class="contact-link">📧 Send Email</a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">💼 LinkedIn</a>
+            <a href="https://github.com/yourprofile" target="_blank" class="contact-link">🐙 GitHub</a>
+            <a href="https://calendly.com/yourprofile" target="_blank" class="contact-link">📅 Schedule Call</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 SAP & UI/UX Professional Portfolio. All rights reserved. | Hosted with ❤️</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Interactive card hover effects
+        document.querySelectorAll('.lifecycle-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.background = 'linear-gradient(135deg, rgba(0, 164, 239, 0.15), rgba(255, 107, 53, 0.08))';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.background = 'linear-gradient(135deg, rgba(0, 164, 239, 0.1), rgba(255, 107, 53, 0.05))';
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.lifecycle-card, .project-card, .skill-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
 </html>
