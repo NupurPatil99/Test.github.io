@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nupur — SAP UI5/Fiori Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0c1f34;
+    --bg-2:#122b46;
+    --bg-3:#16334f;
+    --line: rgba(150,195,245,.14);
+    --line-strong: rgba(150,195,245,.3);
+    --text:#edf3fa;
+    --text-dim:#87a2c0;
+    --amber:#e8934a;
+    --cyan:#5ec8f2;
+    --green:#4fd1a5;
+    --font-display:'Space Grotesk','IBM Plex Sans',sans-serif;
+    --font-body:'IBM Plex Sans',-apple-system,sans-serif;
+    --font-mono:'IBM Plex Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:44px 44px;
+  }
+  ::selection{background:rgba(94,200,242,.3);}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:.72rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    display:flex;
+    align-items:center;
+    gap:.5rem;
+  }
+  .eyebrow::before{content:'';width:18px;height:1px;background:var(--line-strong);}
+
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(12,31,52,.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    padding:.9rem 1.5rem;
+  }
+  .header-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
+  .brand{font-family:var(--font-display);font-weight:700;font-size:1.05rem;letter-spacing:-.3px;}
+  .brand span{color:var(--cyan);}
+  .header-links{display:flex;gap:1.5rem;font-size:.85rem;color:var(--text-dim);}
+  .header-links a{text-decoration:none;}
+  .header-links a:hover{color:var(--cyan);}
+
+  .intro{
+    max-width:1000px;margin:0 auto;padding:4.5rem 1.5rem 3rem;
+    display:grid;grid-template-columns:auto 1fr;gap:2.5rem;align-items:center;
+  }
+  .photo-frame{position:relative;width:150px;height:150px;}
+  .photo-frame .corner{position:absolute;width:16px;height:16px;border:2px solid var(--cyan);}
+  .photo-frame .corner.tl{top:-6px;left:-6px;border-right:none;border-bottom:none;}
+  .photo-frame .corner.tr{top:-6px;right:-6px;border-left:none;border-bottom:none;}
+  .photo-frame .corner.bl{bottom:-6px;left:-6px;border-right:none;border-top:none;}
+  .photo-frame .corner.br{bottom:-6px;right:-6px;border-left:none;border-top:none;}
+  .photo-placeholder{
+    width:100%;height:100%;border-radius:6px;
+    background:linear-gradient(135deg, var(--bg-3), var(--bg-2));
+    border:1px solid var(--line-strong);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-mono);font-size:.7rem;color:var(--text-dim);text-align:center;
+    padding:.75rem;
+  }
+  .intro h1{font-family:var(--font-display);font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.5px;margin:.5rem 0 .6rem;}
+  .intro p{color:var(--text-dim);font-size:1rem;max-width:520px;}
+  .intro-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;}
+  .intro-tag{
+    font-family:var(--font-mono);font-size:.72rem;color:var(--cyan);
+    border:1px solid rgba(94,200,242,.35);padding:.25rem .6rem;border-radius:3px;
+  }
+  @media (max-width:640px){.intro{grid-template-columns:1fr;text-align:center;}
+    .photo-frame{margin:0 auto;}
+    .intro-tags,.eyebrow{justify-content:center;}
+  }
+
+  .selector{max-width:1000px;margin:1rem auto 3rem;padding:0 1.5rem;}
+  .selector-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-bottom:.4rem;}
+  .selector-sub{color:var(--text-dim);font-size:.92rem;margin-bottom:1.75rem;}
+  .persona-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+  @media (max-width:800px){.persona-grid{grid-template-columns:1fr;}}
+
+  .persona-card{
+    position:relative;
+    background:var(--bg-2);
+    border:1px solid var(--line-strong);
+    padding:1.5rem 1.4rem 1.4rem;
+    cursor:pointer;
+    transition:transform .25s ease, border-color .25s ease, background .25s ease;
+    text-align:left;
+  }
+  .persona-card::before, .persona-card::after,
+  .persona-card .c2::before, .persona-card .c2::after{
+    content:'';position:absolute;width:10px;height:10px;border-color:var(--line-strong);border-style:solid;transition:border-color .25s ease;
+  }
+  .persona-card::before{top:6px;left:6px;border-width:1px 0 0 1px;}
+  .persona-card::after{top:6px;right:6px;border-width:1px 1px 0 0;}
+  .persona-card .c2::before{bottom:6px;left:6px;border-width:0 0 1px 1px;}
+  .persona-card .c2::after{bottom:6px;right:6px;border-width:0 1px 1px 0;}
+
+  .persona-card:hover{transform:translateY(-4px);}
+  .persona-card .p-icon{font-size:1.6rem;margin-bottom:.9rem;}
+  .persona-card .p-label{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:.4rem;}
+  .persona-card .p-title{font-family:var(--font-display);font-size:1.1rem;font-weight:600;margin-bottom:.5rem;}
+  .persona-card .p-desc{color:var(--text-dim);font-size:.86rem;margin-bottom:1.1rem;}
+  .persona-card .p-cta{font-family:var(--font-mono);font-size:.78rem;display:inline-flex;align-items:center;gap:.4rem;}
+
+  .persona-card[data-persona="overview"]:hover, .persona-card[data-persona="overview"].active{border-color:var(--amber);}
+  .persona-card[data-persona="overview"]:hover .p-cta, .persona-card[data-persona="overview"].active .p-cta{color:var(--amber);}
+  .persona-card[data-persona="systems"]:hover, .persona-card[data-persona="systems"].active{border-color:var(--cyan);}
+  .persona-card[data-persona="systems"]:hover .p-cta, .persona-card[data-persona="systems"].active .p-cta{color:var(--cyan);}
+  .persona-card[data-persona="services"]:hover, .persona-card[data-persona="services"].active{border-color:var(--green);}
+  .persona-card[data-persona="services"]:hover .p-cta, .persona-card[data-persona="services"].active .p-cta{color:var(--green);}
+  .persona-card.active{background:var(--bg-3);}
+
+  #content-panel{max-width:1000px;margin:0 auto;padding:0 1.5rem 5rem;}
+  .panel{display:none;animation:fadeIn .5s ease;}
+  .panel.active{display:block;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+
+  .panel-header{
+    display:flex;align-items:center;gap:.75rem;
+    padding:.75rem 1rem;margin-bottom:2rem;
+    border-top:2px solid var(--accent-c);
+    background:var(--bg-2);
+    font-family:var(--font-mono);font-size:.75rem;color:var(--text-dim);
+  }
+  .panel-header b{color:var(--accent-c);}
+  .panel[data-persona="overview"]{--accent-c:var(--amber);}
+  .panel[data-persona="systems"]{--accent-c:var(--cyan);}
+  .panel[data-persona="services"]{--accent-c:var(--green);}
+
+  .panel h2{font-family:var(--font-display);font-size:1.7rem;font-weight:700;margin-bottom:.5rem;letter-spacing:-.5px;}
+  .panel > p.lede{color:var(--text-dim);margin-bottom:2rem;max-width:640px;}
+
+  .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-bottom:2.5rem;}
+  .stat{background:var(--bg-2);border:1px solid var(--line);padding:1.1rem;}
+  .stat .num{font-family:var(--font-display);font-size:1.7rem;font-weight:700;color:var(--accent-c);}
+  .stat .lab{font-size:.78rem;color:var(--text-dim);margin-top:.2rem;}
+
+  .chip-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.5rem;}
+  .chip{font-size:.82rem;background:var(--bg-2);border:1px solid var(--line);padding:.4rem .8rem;border-radius:3px;}
+
+  .process{display:flex;flex-wrap:wrap;gap:0;margin-bottom:2.5rem;border:1px solid var(--line);}
+  .process-step{flex:1;min-width:130px;padding:1rem;border-right:1px solid var(--line);text-align:center;}
+  .process-step:last-child{border-right:none;}
+  .process-step .n{font-family:var(--font-mono);font-size:.7rem;color:var(--accent-c);margin-bottom:.35rem;}
+  .process-step .t{font-size:.86rem;font-weight:600;}
+
+  .sub-heading{font-family:var(--font-display);font-size:1.15rem;font-weight:600;margin:2.5rem 0 1rem;}
+
+  .stack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;margin-bottom:2.5rem;}
+  .stack-block{background:var(--bg-2);border:1px solid var(--line);padding:1.2rem;}
+  .stack-block h4{font-family:var(--font-mono);font-size:.75rem;color:var(--cyan);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.7rem;}
+  .stack-block ul{list-style:none;font-size:.86rem;color:var(--text-dim);display:flex;flex-direction:column;gap:.4rem;}
+  .stack-block li::before{content:'▸ ';color:var(--cyan);}
+
+  .code-block{
+    background:#081420;border:1px solid var(--line);padding:1.2rem 1.4rem;
+    font-family:var(--font-mono);font-size:.8rem;color:#c9dcef;overflow-x:auto;margin-bottom:.75rem;
+    white-space:pre;
+  }
+  .code-caption{font-size:.78rem;color:var(--text-dim);margin-bottom:2.5rem;}
+
+  .case-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-bottom:2.5rem;}
+  .case-card{background:var(--bg-2);border:1px solid var(--line);padding:1.4rem;}
+  .case-card h4{font-family:var(--font-display);font-size:1.02rem;margin-bottom:.6rem;}
+  .case-card .field{font-size:.82rem;margin-bottom:.5rem;}
+  .case-card .field b{color:var(--accent-c);font-family:var(--font-mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:.15rem;}
+  .case-card .field span{color:var(--text-dim);}
+
+  .service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-bottom:2.5rem;}
+  .service-card{background:var(--bg-2);border:1px solid var(--line);padding:1.3rem;}
+  .service-card .s-icon{font-size:1.4rem;margin-bottom:.6rem;}
+  .service-card h4{font-family:var(--font-display);font-size:1rem;margin-bottom:.4rem;}
+  .service-card p{font-size:.84rem;color:var(--text-dim);}
+
+  .cta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;}
+  .btn{
+    font-family:var(--font-mono);font-size:.82rem;padding:.7rem 1.4rem;
+    border:1px solid var(--accent-c);color:var(--accent-c);text-decoration:none;
+    display:inline-flex;align-items:center;gap:.4rem;transition:all .25s ease;
+  }
+  .btn.solid{background:var(--accent-c);color:var(--bg);}
+  .btn:hover{transform:translateY(-2px);}
+
+  footer{max-width:1000px;margin:0 auto;padding:2rem 1.5rem 3rem;border-top:1px solid var(--line);
+    text-align:center;color:var(--text-dim);font-size:.82rem;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">Nupur <span>/ SAP UI5 &amp; Fiori</span></div>
+    <div class="header-links">
+      <a href="mailto:your.email@example.com">Email</a>
+      <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ INTRO (universal, always visible) ============ -->
+<section class="intro">
+  <div class="photo-frame">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="photo-placeholder">YOUR<br/>PHOTO<br/>HERE</div>
+  </div>
+  <div>
+    <div class="eyebrow">Fig. 01 — Introduction</div>
+    <h1>Hi, I'm Nupur — I build enterprise software on SAP.</h1>
+    <p>4+ years designing and shipping SAP UI5, Fiori, RAP, CAP, WorkZone, and BTP applications for enterprise teams. Below, pick the view that fits what you're looking for — I've tailored the details to save you time.</p>
+    <div class="intro-tags">
+      <span class="intro-tag">SAP UI5 / Fiori</span>
+      <span class="intro-tag">RAP &amp; CAP</span>
+      <span class="intro-tag">SAP BTP</span>
+      <span class="intro-tag">WorkZone</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PERSONA SELECTOR ============ -->
+<section class="selector">
+  <div class="eyebrow">Fig. 02 — Select a view</div>
+  <div class="selector-title" style="margin-top:.6rem;">Which best describes you?</div>
+  <div class="selector-sub">Each view shows the same person — just organized around what matters to you.</div>
+
+  <div class="persona-grid">
+    <button class="persona-card" data-persona="overview">
+      <div class="c2"></div>
+      <div class="p-icon">🧭</div>
+      <div class="p-label">Layer 01 — Overview</div>
+      <div class="p-title">Non-technical recruiter</div>
+      <div class="p-desc">The big picture: what I do, in plain language, and why it matters.</div>
+      <div class="p-cta">View overview →</div>
+    </button>
+
+    <button class="persona-card" data-persona="systems">
+      <div class="c2"></div>
+      <div class="p-icon">⚙️</div>
+      <div class="p-label">Layer 02 — Systems</div>
+      <div class="p-title">Technical recruiter</div>
+      <div class="p-desc">The stack in detail — controls, services, transactions, and how I debug.</div>
+      <div class="p-cta">View stack →</div>
+    </button>
+
+    <button class="persona-card" data-persona="services">
+      <div class="c2"></div>
+      <div class="p-icon">🤝</div>
+      <div class="p-label">Layer 03 — Services</div>
+      <div class="p-title">Freelance client</div>
+      <div class="p-desc">What I can build for you, how I work, and past project outcomes.</div>
+      <div class="p-cta">View services →</div>
+    </button>
+  </div>
+</section>
+
+<!-- ============ CONTENT PANELS ============ -->
+<div id="content-panel">
+
+  <!-- ---------- OVERVIEW ---------- -->
+  <div class="panel" data-persona="overview">
+    <div class="panel-header">VIEWING &nbsp;<b>Layer 01 — Overview</b>&nbsp; · Non-technical recruiter</div>
+    <h2>The short version</h2>
+    <p class="lede">I design and build the software that large companies run their operations on — think the screens employees use to manage inventory, approve expenses, or track vendors. Here's the impact, without the jargon.</p>
+
+    <div class="stat-row">
+      <div class="stat"><div class="num">4+</div><div class="lab">Years of experience</div></div>
+      <div class="stat"><div class="num">10+</div><div class="lab">Enterprise apps shipped [edit]</div></div>
+      <div class="stat"><div class="num">3+</div><div class="lab">Industries served [edit]</div></div>
+      <div class="stat"><div class="num">5</div><div class="lab">Full project lifecycles owned</div></div>
+    </div>
+
+    <div class="sub-heading">What I actually do</div>
+    <p style="color:var(--text-dim);max-width:640px;margin-bottom:1.5rem;">
+      I take a business problem — "our warehouse team can't see stock levels in real time" — and turn it into a working
+      application: understanding what people need, designing the screens, building the backend that powers them,
+      and getting it safely into production.
+    </p>
+
+    <div class="chip-row">
+      <span class="chip">Business analysis</span>
+      <span class="chip">UI/UX design</span>
+      <span class="chip">App development</span>
+      <span class="chip">Cloud deployment</span>
+      <span class="chip">Security &amp; access</span>
+    </div>
+
+    <div class="sub-heading">How a project moves through my hands</div>
+    <div class="process">
+      <div class="process-step"><div class="n">01</div><div class="t">Understand</div></div>
+      <div class="process-step"><div class="n">02</div><div class="t">Design</div></div>
+      <div class="process-step"><div class="n">03</div><div class="t">Build</div></div>
+      <div class="process-step"><div class="n">04</div><div class="t">Launch</div></div>
+      <div class="process-step"><div class="n">05</div><div class="t">Support</div></div>
+    </div>
+
+    <div class="cta-row">
+      <a href="#" class="btn solid">Download resume</a>
+      <a href="https://calendly.com/yourprofile" target="_blank" class="btn">Schedule a quick call</a>
+    </div>
+  </div>
+
+  <!-- ---------- SYSTEMS ---------- -->
+  <div class="panel" data-persona="systems">
+    <div class="panel-header">VIEWING &nbsp;<b>Layer 02 — Systems</b>&nbsp; · Technical recruiter</div>
+    <h2>Under the hood</h2>
+    <p class="lede">Full stack breakdown — frontend controls, backend services, BTP infrastructure, and the tools I use day to day.
+      <em style="color:var(--text-dim);">(Marked [edit] where you should swap in your real specifics before publishing.)</em></p>
+
+    <div class="stack-grid">
+      <div class="stack-block">
+        <h4>Frontend — SAPUI5 / Fiori</h4>
+        <ul>
+          <li>sap.m &amp; sap.ui.table controls [edit: name specific ones you use most]</li>
+          <li>sap.ui.comp smart controls (SmartTable, SmartFilterBar)</li>
+          <li>sap.f.DynamicPage / ObjectPageLayout</li>
+          <li>Fiori Elements w/ OData annotations</li>
+          <li>Custom controls &amp; fragments</li>
+        </ul>
+      </div>
+      <div class="stack-block">
+        <h4>Backend — RAP / CAP</h4>
+        <ul>
+          <li>RAP behavior definitions &amp; implementations</li>
+          <li>CDS views &amp; CAP services (Node.js)</li>
+          <li>OData v2 / v4 service exposure</li>
+          <li>Custom business logic &amp; validations</li>
+        </ul>
+      </div>
+      <div class="stack-block">
+        <h4>SAP BTP</h4>
+        <ul>
+          <li>Cloud Foundry deployment</li>
+          <li>XSUAA / role collections</li>
+          <li>Destination &amp; Connectivity services</li>
+          <li>Business Application Studio</li>
+          <li>WorkZone &amp; Fiori Launchpad</li>
+        </ul>
+      </div>
+      <div class="stack-block">
+        <h4>Tools &amp; transactions</h4>
+        <ul>
+          <li>SE80, SEGW [edit: your actual t-code list]</li>
+          <li>/IWFND/MAINT_SERVICE, /IWFND/ERROR_LOG</li>
+          <li>PFCG, SU01, SICF</li>
+          <li>STMS, SLG1</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-heading">How I debug</div>
+    <p style="color:var(--text-dim);max-width:640px;margin-bottom:1.5rem;">
+      [Edit this to describe your real workflow — example structure below:]
+      Start in the browser's network tab to isolate whether it's a frontend or OData issue. For gateway errors,
+      /IWFND/ERROR_LOG and /IWBEP/ traces point to the failing entity. For BTP-side auth issues, I check the
+      XSUAA role assignment and destination configuration before touching application code.
+    </p>
+
+    <div class="sub-heading">Example — CAP service definition</div>
+    <div class="code-block">service CatalogService {
+  entity Products as projection on db.Products;
+  action reserveStock(id: UUID, qty: Integer) returns Boolean;
+}</div>
+    <div class="code-caption">Illustrative example — swap for a real (sanitized) snippet from your own work.</div>
+
+    <div class="cta-row">
+      <a href="https://github.com/yourprofile" target="_blank" class="btn solid">View GitHub</a>
+      <a href="#" class="btn">Full technical resume</a>
+    </div>
+  </div>
+
+  <!-- ---------- SERVICES ---------- -->
+  <div class="panel" data-persona="services">
+    <div class="panel-header">VIEWING &nbsp;<b>Layer 03 — Services</b>&nbsp; · Freelance client</div>
+    <h2>How I can help you</h2>
+    <p class="lede">I help businesses replace clunky manual processes with clean, purpose-built SAP applications — from a single Fiori app to a full BTP setup.</p>
+
+    <div class="service-grid">
+      <div class="service-card"><div class="s-icon">🖥️</div><h4>Fiori / UI5 app development</h4><p>Custom, responsive apps built on Fiori Elements or freestyle UI5.</p></div>
+      <div class="service-card"><div class="s-icon">☁️</div><h4>BTP setup &amp; architecture</h4><p>Getting your cloud environment, security, and services configured right the first time.</p></div>
+      <div class="service-card"><div class="s-icon">🔄</div><h4>Legacy modernization</h4><p>Turning old SAP GUI screens into modern, mobile-friendly experiences.</p></div>
+      <div class="service-card"><div class="s-icon">📊</div><h4>Dashboards &amp; reporting</h4><p>Real-time visibility into the data that runs your operations.</p></div>
+      <div class="service-card"><div class="s-icon">🔗</div><h4>Integration &amp; automation</h4><p>Connecting SAP to the other systems your business already runs on.</p></div>
+    </div>
+
+    <div class="sub-heading">How we'd work together</div>
+    <div class="process">
+      <div class="process-step"><div class="n">01</div><div class="t">Discover</div></div>
+      <div class="process-step"><div class="n">02</div><div class="t">Design</div></div>
+      <div class="process-step"><div class="n">03</div><div class="t">Build</div></div>
+      <div class="process-step"><div class="n">04</div><div class="t">Launch</div></div>
+      <div class="process-step"><div class="n">05</div><div class="t">Support</div></div>
+    </div>
+
+    <div class="sub-heading">Recent work</div>
+    <div class="case-grid">
+      <div class="case-card">
+        <h4>Intelligent Inventory System</h4>
+        <div class="field"><b>Problem</b><span>Warehouse teams lacked real-time stock visibility across sites.</span></div>
+        <div class="field"><b>Solution</b><span>SAP CAP + Fiori Elements app with automated forecasting.</span></div>
+        <div class="field"><b>Result</b><span>[edit: add a real, measurable outcome]</span></div>
+      </div>
+      <div class="case-card">
+        <h4>Vendor Management Portal</h4>
+        <div class="field"><b>Problem</b><span>Manual PO and invoice tracking across email and spreadsheets.</span></div>
+        <div class="field"><b>Solution</b><span>RAP v4 portal with role-based approval workflows.</span></div>
+        <div class="field"><b>Result</b><span>[edit: add a real, measurable outcome]</span></div>
+      </div>
+      <div class="case-card">
+        <h4>Employee Portal</h4>
+        <div class="field"><b>Problem</b><span>Leave, expenses, and reviews lived in three disconnected systems.</span></div>
+        <div class="field"><b>Solution</b><span>Unified WorkZone hub integrated with SuccessFactors &amp; S/4HANA.</span></div>
+        <div class="field"><b>Result</b><span>[edit: add a real, measurable outcome]</span></div>
+      </div>
+    </div>
+
+    <div class="sub-heading">Get started</div>
+    <p style="color:var(--text-dim);margin-bottom:1rem;">Tell me a bit about your project and I'll get back to you within a couple of days.</p>
+    <div class="cta-row">
+      <a href="mailto:your.email@example.com?subject=Project%20inquiry" class="btn solid">Start a project</a>
+      <a href="https://calendly.com/yourprofile" target="_blank" class="btn">Book a call</a>
+    </div>
+  </div>
+
+</div>
+
+<footer><p>© 2026 Nupur — SAP UI5 &amp; Fiori Developer. Built with intent, one layer at a time.</p></footer>
+
+<script>
+  const cards = document.querySelectorAll('.persona-card');
+  const panels = document.querySelectorAll('.panel');
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const persona = card.dataset.persona;
+
+      cards.forEach(c => c.classList.toggle('active', c === card));
+      panels.forEach(p => p.classList.toggle('active', p.dataset.persona === persona));
+
+      const target = document.getElementById('content-panel');
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>
