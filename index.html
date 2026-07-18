@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nupur — SAP & UI/UX Professional Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --primary:#00a4ef;
+    --accent:#ff6b35;
+    --bg:#080b10;
+    --text:#ffffff;
+    --text2:#8b96a5;
+    --font-body:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    --font-display:'Space Grotesk','Inter',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.6;overflow-x:hidden;}
+  ::selection{background:rgba(0,164,239,.35);}
+
+  .bg{position:fixed;inset:0;z-index:-1;
+    background:
+      radial-gradient(circle at 15% 40%, rgba(0,164,239,.10) 0%, transparent 50%),
+      radial-gradient(circle at 85% 75%, rgba(255,107,53,.06) 0%, transparent 50%),
+      var(--bg);
+  }
+
+  /* ---------- Header ---------- */
+  header{position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(8,11,16,.4); backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(0,164,239,.15);
+    padding:.9rem 1.5rem; transition:background .3s ease;
+  }
+  header.scrolled{background:rgba(8,11,16,.85);}
+  .header-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:var(--font-display);font-weight:700;font-size:1.15rem;letter-spacing:-.5px;}
+  nav.desktop{display:flex;gap:1.75rem;}
+  nav.desktop a{color:var(--text2);text-decoration:none;font-size:.9rem;font-weight:500;position:relative;}
+  nav.desktop a::after{content:'';position:absolute;left:0;bottom:-6px;height:2px;width:0;
+    background:linear-gradient(90deg,var(--primary),var(--accent));transition:width .25s ease;}
+  nav.desktop a:hover::after, nav.desktop a.active::after{width:100%;}
+  nav.desktop a.active{color:var(--primary);}
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;color:#fff;}
+  .menu-btn svg{width:22px;height:22px;}
+  nav.mobile{display:none;flex-direction:column;gap:.75rem;margin-top:1rem;padding-bottom:.5rem;}
+  nav.mobile.open{display:flex;}
+  nav.mobile a{color:var(--text2);text-decoration:none;font-size:.95rem;}
+
+  @media (max-width:860px){
+    nav.desktop{display:none;}
+    .menu-btn{display:block;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{min-height:88vh;display:flex;align-items:center;justify-content:center;padding:8rem 1.5rem 2rem;text-align:center;}
+  .hero-content{max-width:780px;}
+  .eyebrow{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--font-mono);font-size:.78rem;
+    color:var(--text2);border:1px solid rgba(255,107,53,.3);border-radius:20px;padding:.35rem .9rem;margin-bottom:1.5rem;}
+  h1{font-family:var(--font-display);font-size:clamp(2.2rem,6vw,3.8rem);font-weight:700;line-height:1.12;
+    letter-spacing:-1.5px;margin-bottom:1.25rem;}
+  .gradient{background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;background-clip:text;}
+  .role-rotator{position:relative;height:1.6rem;margin-bottom:2.25rem;}
+  .role-rotator span{position:absolute;left:0;right:0;font-family:var(--font-mono);font-size:1.05rem;
+    color:var(--primary);opacity:0;transform:translateY(6px);transition:opacity .5s ease, transform .5s ease;}
+  .role-rotator span.active{opacity:1;transform:translateY(0);}
+  .cta-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+  .btn{padding:.75rem 1.75rem;border-radius:8px;font-weight:600;font-size:.95rem;text-decoration:none;
+    display:inline-block;transition:transform .25s ease, box-shadow .25s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--primary);color:var(--bg);}
+  .btn-primary:hover{box-shadow:0 10px 30px rgba(0,164,239,.3);}
+  .btn-secondary{border:2px solid var(--primary);color:var(--primary);background:transparent;}
+  .btn-secondary:hover{background:rgba(0,164,239,.1);}
+
+  /* ---------- Sections (shared) ---------- */
+  section.block{max-width:1200px;margin:5rem auto;padding:0 1.5rem;}
+  .section-title{font-family:var(--font-display);text-align:center;font-size:clamp(1.8rem,4vw,2.6rem);
+    font-weight:700;letter-spacing:-1px;margin-bottom:.75rem;}
+  .section-subtitle{text-align:center;color:var(--text2);margin-bottom:3rem;font-size:1.05rem;}
+  .tag-row{display:flex;flex-wrap:wrap;gap:.5rem;}
+  .skill-tag{background:rgba(0,164,239,.15);color:var(--primary);padding:.25rem .7rem;border-radius:20px;
+    font-size:.75rem;font-weight:600;}
+
+  /* ---------- Lifecycle pipeline ---------- */
+  .timeline{position:relative;margin-top:2rem;}
+  .timeline-line{position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);
+    background:linear-gradient(180deg, rgba(0,164,239,.35), rgba(255,107,53,.15));}
+  .timeline-row{display:flex;align-items:center;position:relative;margin-bottom:2.5rem;
+    opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
+  .timeline-row.visible{opacity:1;transform:translateY(0);}
+  .timeline-row.reverse{flex-direction:row-reverse;}
+  .timeline-card{flex:1;background:linear-gradient(135deg, rgba(0,164,239,.08), rgba(255,107,53,.05));
+    border:1px solid rgba(0,164,239,.2);border-radius:12px;padding:1.5rem 1.75rem;}
+  .timeline-row:not(.reverse) .timeline-card{text-align:right;}
+  .timeline-row:not(.reverse) .card-number{margin-left:auto;}
+  .timeline-row:not(.reverse) .tag-row{justify-content:flex-end;}
+  .card-number{display:inline-flex;font-family:var(--font-mono);font-size:.85rem;color:var(--accent);margin-bottom:.5rem;}
+  .card-title{font-family:var(--font-display);font-size:1.2rem;font-weight:600;margin-bottom:.5rem;}
+  .card-desc{color:var(--text2);font-size:.92rem;margin-bottom:.9rem;}
+  .timeline-dot{width:16px;height:16px;border-radius:50%;margin:0 1.25rem;flex-shrink:0;
+    background:#1a1f2e;transition:all .4s ease;}
+  .timeline-row.visible .timeline-dot{background:linear-gradient(135deg,var(--primary),var(--accent));
+    box-shadow:0 0 0 6px rgba(0,164,239,.15);}
+  .timeline-spacer{flex:1;}
+
+  @media (max-width:860px){
+    .timeline-line{left:8px;}
+    .timeline-row, .timeline-row.reverse{flex-direction:column;align-items:flex-start;}
+    .timeline-dot{margin:.5rem 0 .5rem 1px;}
+    .timeline-card, .timeline-row:not(.reverse) .timeline-card{text-align:left;width:100%;}
+    .timeline-row:not(.reverse) .card-number{margin-left:0;}
+    .timeline-row:not(.reverse) .tag-row{justify-content:flex-start;}
+  }
+
+  /* ---------- Skills ---------- */
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1.25rem;}
+  .skill-item{background:rgba(0,164,239,.07);border:1px solid rgba(0,164,239,.18);border-radius:10px;
+    padding:1.5rem 1rem;text-align:center;transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;}
+  .skill-item:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,164,239,.18);border-color:rgba(0,164,239,.5);}
+  .skill-ring{position:relative;width:76px;height:76px;margin:0 auto .75rem;}
+  .skill-ring svg{transform:rotate(-90deg);}
+  .skill-ring .track{fill:none;stroke:rgba(0,164,239,.15);stroke-width:6;}
+  .skill-ring .fill{fill:none;stroke:url(#ring-grad);stroke-width:6;stroke-linecap:round;
+    transition:stroke-dashoffset 1.1s cubic-bezier(.2,.8,.2,1);}
+  .skill-ring .icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.4rem;}
+  .skill-name{font-weight:600;font-size:.92rem;margin-bottom:.25rem;}
+  .skill-level{color:var(--text2);font-size:.8rem;font-family:var(--font-mono);}
+
+  /* ---------- Projects ---------- */
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.75rem;}
+  .project-card{background:linear-gradient(135deg, rgba(0,164,239,.06), rgba(255,107,53,.04));
+    border:1px solid rgba(0,164,239,.18);border-radius:12px;overflow:hidden;
+    opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease,
+    box-shadow .35s ease, border-color .35s ease;}
+  .project-card.visible{opacity:1;transform:translateY(0);}
+  .project-card:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,164,239,.18);border-color:rgba(0,164,239,.5);}
+  .project-header{background:linear-gradient(135deg,var(--primary),var(--accent));padding:1.5rem 1.75rem;}
+  .project-title{font-family:var(--font-display);font-size:1.15rem;font-weight:700;margin-bottom:.3rem;}
+  .project-category{font-size:.8rem;opacity:.9;font-family:var(--font-mono);}
+  .project-body{padding:1.4rem 1.75rem;}
+  .project-desc{color:var(--text2);margin-bottom:1rem;font-size:.92rem;}
+  .tech-tag{background:rgba(255,107,53,.18);color:var(--accent);padding:.25rem .7rem;border-radius:20px;font-size:.75rem;}
+
+  /* ---------- AI section ---------- */
+  .ai-section{max-width:1200px;margin:5rem auto;padding:3rem 2rem;
+    background:linear-gradient(135deg, rgba(0,164,239,.08), rgba(255,107,53,.05));
+    border-radius:16px;border:1px solid rgba(0,164,239,.18);}
+  .ai-content{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-top:2rem;}
+  .ai-content h3{font-family:var(--font-display);font-size:1.6rem;margin-bottom:.75rem;}
+  .ai-features{list-style:none;}
+  .ai-features li{margin-bottom:.9rem;padding-left:1.75rem;position:relative;color:var(--text2);}
+  .ai-features li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700;}
+  .ai-visual{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .ai-box{background:rgba(0,164,239,.12);border:2px dashed var(--primary);border-radius:8px;padding:1.4rem;text-align:center;}
+  .ai-box strong{color:var(--accent);}
+  .ai-box p{margin-top:.5rem;color:var(--text2);font-size:.9rem;}
+  @media (max-width:860px){.ai-content{grid-template-columns:1fr;}}
+
+  /* ---------- Contact ---------- */
+  .contact-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem;}
+  .contact-link{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.4rem;
+    background:rgba(0,164,239,.12);border:1px solid var(--primary);border-radius:8px;color:var(--primary);
+    text-decoration:none;font-weight:600;font-size:.9rem;transition:all .25s ease;}
+  .contact-link:hover{background:var(--primary);color:var(--bg);transform:translateY(-2px);}
+
+  footer{max-width:1200px;margin:3rem auto 2rem;padding:2rem 1.5rem 0;border-top:1px solid rgba(0,164,239,.15);
+    text-align:center;color:var(--text2);font-size:.85rem;}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+
+<header id="site-header">
+  <div class="header-inner">
+    <div class="logo">Nupur — SAP &amp; UI/UX</div>
+    <nav class="desktop" id="nav-desktop">
+      <a href="#lifecycle" data-section="lifecycle">Lifecycle</a>
+      <a href="#skills" data-section="skills">Skills</a>
+      <a href="#projects" data-section="projects">Projects</a>
+      <a href="#ai" data-section="ai">AI Integration</a>
+      <a href="#contact" data-section="contact">Contact</a>
+    </nav>
+    <button class="menu-btn" id="menu-btn" aria-label="Toggle menu">
+      <svg id="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <nav class="mobile" id="nav-mobile">
+    <a href="#lifecycle">Lifecycle</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#ai">AI Integration</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">✨ 4+ years building enterprise SAP experiences</div>
+    <h1>Crafting Enterprise Solutions with <span class="gradient">SAP &amp; Modern UX</span></h1>
+    <div class="role-rotator" id="role-rotator">
+      <span class="active">SAP UI5 / Fiori Developer</span>
+      <span>RAP &amp; CAP Engineer</span>
+      <span>BTP Cloud Architect</span>
+      <span>WorkZone Specialist</span>
+    </div>
+    <div class="cta-row">
+      <a href="#lifecycle" class="btn btn-primary">Explore My Work →</a>
+      <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="lifecycle">
+  <h2 class="section-title">Application Lifecycle Expertise</h2>
+  <p class="section-subtitle">A complete journey from concept to deployment — how a project moves through my hands, end to end.</p>
+  <div class="timeline" id="timeline">
+    <div class="timeline-line"></div>
+    <!-- rows injected by JS -->
+  </div>
+</section>
+
+<section class="block" id="skills">
+  <h2 class="section-title">Technical Skills &amp; Expertise</h2>
+  <div class="skills-grid" id="skills-grid"></div>
+</section>
+
+<section class="block" id="projects">
+  <h2 class="section-title">Featured Custom Applications</h2>
+  <div class="projects-grid" id="projects-grid"></div>
+</section>
+
+<section class="ai-section" id="ai">
+  <h2 class="section-title">AI Integration &amp; Future-Ready Solutions</h2>
+  <div class="ai-content">
+    <div>
+      <h3>Emerging AI Capabilities</h3>
+      <p style="margin-bottom:1.5rem;color:var(--text2);">Expanding my expertise in AI integration with SAP to deliver intelligent, data-driven solutions.</p>
+      <ul class="ai-features">
+        <li>AI-powered process automation with SAP Intelligent RPA</li>
+        <li>Predictive analytics &amp; machine learning models</li>
+        <li>Natural language processing for business intelligence</li>
+        <li>Generative AI for report generation &amp; insights</li>
+        <li>Intelligent document processing &amp; classification</li>
+        <li>AI-driven user experience personalization</li>
+      </ul>
+    </div>
+    <div class="ai-visual">
+      <div class="ai-box"><strong>📊 Data Intelligence</strong><p>Extracting insights from enterprise data</p></div>
+      <div class="ai-box"><strong>🤖 Process Automation</strong><p>Intelligent workflow automation</p></div>
+      <div class="ai-box"><strong>🧠 Predictive Models</strong><p>Forecasting &amp; decision support</p></div>
+      <div class="ai-box"><strong>✨ Smart UX</strong><p>Personalized user experiences</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="contact" style="text-align:center;">
+  <h2 class="section-title">Let's Build Something Amazing</h2>
+  <p class="section-subtitle" style="margin-bottom:1rem;">Ready to discuss your next project or explore collaboration opportunities?</p>
+  <div class="contact-row">
+    <a href="mailto:your.email@example.com" class="contact-link">📧 Send Email</a>
+    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">💼 LinkedIn</a>
+    <a href="https://github.com/yourprofile" target="_blank" class="contact-link">🐙 GitHub</a>
+    <a href="https://calendly.com/yourprofile" target="_blank" class="contact-link">📅 Schedule Call</a>
+  </div>
+</section>
+
+<footer><p>© 2026 SAP &amp; UI/UX Professional Portfolio. Hosted with ❤️</p></footer>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00a4ef"/>
+      <stop offset="100%" stop-color="#ff6b35"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<script>
+  // ---------- Data ----------
+  const LIFECYCLE = [
+    { n:"01", title:"Client Discovery & Analysis", desc:"Deep-dive workshops to understand business requirements, pain points, and technical constraints.", tags:["Business Analysis","Requirements Gathering","Workshop Facilitation"] },
+    { n:"02", title:"API Design & OData Services", desc:"Building robust CAP and RAP-based v2/v4 services with proper data exposure and security protocols.", tags:["SAP CAP","OData RAP v4","Authorization"] },
+    { n:"03", title:"Frontend Development", desc:"Responsive Fiori Elements and freestyle applications with intuitive, considered interfaces.", tags:["SAP Fiori","UI5","UX Design"] },
+    { n:"04", title:"Cloud & On-Prem Deployment", desc:"Deployment across SAP BTP, Cloud Foundry, and on-premises environments with CI/CD pipelines.", tags:["SAP BTP","Cloud Foundry","DevOps"] },
+    { n:"05", title:"WorkZone & Portal Design", desc:"Centralized entry points with SAP Build WorkZone for seamless, unified user experiences.", tags:["WorkZone","Portal Design","Information Architecture"] },
+    { n:"06", title:"Role Management & Security", desc:"Fine-grained role-based access control and authorization frameworks.", tags:["RBAC","Security Design","Compliance"] },
+    { n:"07", title:"System & Subaccount Migration", desc:"Seamless migration across dev, QA, production, and multiple subaccounts with zero downtime.", tags:["System Transport","Data Migration","Infrastructure"] },
+  ];
+
+  const SKILLS = [
+    { icon:"🏗️", name:"SAP Architecture", level:"Expert", pct:95 },
+    { icon:"📱", name:"UI/UX Design", level:"Expert", pct:92 },
+    { icon:"💻", name:"Frontend Development", level:"Expert", pct:95 },
+    { icon:"⚙️", name:"Backend Services", level:"Expert", pct:90 },
+    { icon:"☁️", name:"Cloud & BTP", level:"Expert", pct:90 },
+    { icon:"🔐", name:"Security & Auth", level:"Advanced", pct:78 },
+    { icon:"📊", name:"Analytics & Reports", level:"Advanced", pct:75 },
+    { icon:"🤖", name:"AI Integration", level:"Emerging", pct:45 },
+  ];
+
+  const PROJECTS = [
+    { title:"Intelligent Inventory System", category:"Complex Application", desc:"Comprehensive inventory management with real-time tracking, automated forecasting, and multi-warehouse support using SAP CAP and Fiori Elements.", tech:["SAP CAP","Fiori","OData v4"] },
+    { title:"Supply Chain Dashboard", category:"Analytics & Visualization", desc:"Interactive real-time dashboard providing supply chain visibility, KPI tracking, and predictive analytics with custom API integrations.", tech:["Analytics","UI5","BTP"] },
+    { title:"Employee Portal", category:"Enterprise Application", desc:"Unified employee hub with leave management, expense tracking, and performance reviews integrated with SuccessFactors and S/4HANA.", tech:["WorkZone","SAP Fiori","Integration"] },
+    { title:"Vendor Management Portal", category:"B2B Solution", desc:"Streamlined vendor collaboration platform with PO management, invoice processing, and performance tracking with role-based workflows.", tech:["RAP v4","Workflows","UI5"] },
+    { title:"Financial Consolidation Tool", category:"Finance & Controlling", desc:"Multi-company financial consolidation with automated allocations, inter-company eliminations, and compliance reporting.", tech:["S/4HANA","CAP","Analytics"] },
+    { title:"Quality Assurance Dashboard", category:"Manufacturing", desc:"Real-time QA monitoring with defect tracking, inspection workflows, and SPC visualization.", tech:["Manufacturing","Fiori","Reports"] },
+  ];
+
+  // ---------- Render: lifecycle timeline ----------
+  const timeline = document.getElementById('timeline');
+  LIFECYCLE.forEach((phase, i) => {
+    const row = document.createElement('div');
+    row.className = 'timeline-row' + (i % 2 !== 0 ? ' reverse' : '');
+    row.innerHTML = `
+      <div class="timeline-card">
+        <div class="card-number">${phase.n}</div>
+        <h3 class="card-title">${phase.title}</h3>
+        <p class="card-desc">${phase.desc}</p>
+        <div class="tag-row">${phase.tags.map(t => `<span class="skill-tag">${t}</span>`).join('')}</div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-spacer"></div>
+    `;
+    timeline.appendChild(row);
+  });
+
+  // ---------- Render: skills ----------
+  const skillsGrid = document.getElementById('skills-grid');
+  const RADIUS = 30, CIRC = 2 * Math.PI * RADIUS;
+  SKILLS.forEach(s => {
+    const item = document.createElement('div');
+    item.className = 'skill-item';
+    item.innerHTML = `
+      <div class="skill-ring">
+        <svg width="76" height="76" viewBox="0 0 76 76">
+          <circle class="track" cx="38" cy="38" r="${RADIUS}"></circle>
+          <circle class="fill" data-pct="${s.pct}" cx="38" cy="38" r="${RADIUS}"
+            stroke-dasharray="${CIRC}" stroke-dashoffset="${CIRC}"></circle>
+        </svg>
+        <div class="icon">${s.icon}</div>
+      </div>
+      <div class="skill-name">${s.name}</div>
+      <div class="skill-level">${s.level}</div>
+    `;
+    skillsGrid.appendChild(item);
+  });
+
+  // ---------- Render: projects ----------
+  const projectsGrid = document.getElementById('projects-grid');
+  PROJECTS.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'project-card';
+    card.innerHTML = `
+      <div class="project-header">
+        <div class="project-title">${p.title}</div>
+        <div class="project-category">${p.category}</div>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">${p.desc}</p>
+        <div class="tag-row">${p.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}</div>
+      </div>
+    `;
+    projectsGrid.appendChild(card);
+  });
+
+  // ---------- Role rotator ----------
+  const roleSpans = document.querySelectorAll('#role-rotator span');
+  let roleIdx = 0;
+  setInterval(() => {
+    roleSpans[roleIdx].classList.remove('active');
+    roleIdx = (roleIdx + 1) % roleSpans.length;
+    roleSpans[roleIdx].classList.add('active');
+  }, 2600);
+
+  // ---------- Header background on scroll ----------
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // ---------- Mobile menu ----------
+  const menuBtn = document.getElementById('menu-btn');
+  const navMobile = document.getElementById('nav-mobile');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+  menuBtn.addEventListener('click', () => {
+    const open = navMobile.classList.toggle('open');
+    iconOpen.style.display = open ? 'none' : 'block';
+    iconClose.style.display = open ? 'block' : 'none';
+  });
+  navMobile.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navMobile.classList.remove('open');
+    iconOpen.style.display = 'block';
+    iconClose.style.display = 'none';
+  }));
+
+  // ---------- Smooth scroll for all anchor links ----------
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // ---------- Scroll-spy for desktop nav ----------
+  const navLinks = document.querySelectorAll('#nav-desktop a');
+  const spySections = Array.from(navLinks).map(a => document.getElementById(a.dataset.section));
+  const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === entry.target.id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+  spySections.forEach(s => s && spyObserver.observe(s));
+
+  // ---------- Reveal on scroll: timeline rows + project cards ----------
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -80px 0px' });
+  document.querySelectorAll('.timeline-row, .project-card').forEach(el => revealObserver.observe(el));
+
+  // ---------- Animate skill rings when scrolled into view ----------
+  const ringObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const circle = entry.target;
+        const pct = parseFloat(circle.dataset.pct);
+        const offset = CIRC - (pct / 100) * CIRC;
+        circle.style.strokeDashoffset = offset;
+        ringObserver.unobserve(circle);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.skill-ring .fill').forEach(el => ringObserver.observe(el));
+</script>
+</body>
+</html>
